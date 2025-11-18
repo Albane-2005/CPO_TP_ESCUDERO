@@ -32,6 +32,26 @@ public class TP3_Heroic_Fantasy_ESCUDERO {
         for (int i = 0; i < inventaire.size(); i++) {
             System.out.println("→ " + inventaire.get(i));
         }
+        
+        Magicien m1 = new Magicien("Gandalf", 65, true);
+        Magicien m2 = new Magicien("Garcimore", 44, false);
+
+        // Étape 27 : 2 guerriers
+        Guerrier g1 = new Guerrier("Conan", 78, false);
+        Guerrier g2 = new Guerrier("Lannister", 45, true);
+
+        // Étape 28 : tableau dynamique
+        ArrayList<Personnage> persos = new ArrayList<>();
+        persos.add(m1);
+        persos.add(m2);
+        persos.add(g1);
+        persos.add(g2);
+
+        // Affichage
+        for (Personnage p : persos) {
+            System.out.println(p);
+        }
+    
     }
     
 }
