@@ -4,6 +4,8 @@
  */
 package tp3_heroic_fantasy_escudero;
 
+import Personnages.*;
+import Armes.*;
 import java.util.ArrayList;
 
 /**
@@ -36,21 +38,50 @@ public class TP3_Heroic_Fantasy_ESCUDERO {
         Magicien m1 = new Magicien("Gandalf", 65, true);
         Magicien m2 = new Magicien("Garcimore", 44, false);
 
-        // Étape 27 : 2 guerriers
         Guerrier g1 = new Guerrier("Conan", 78, false);
         Guerrier g2 = new Guerrier("Lannister", 45, true);
 
-        // Étape 28 : tableau dynamique
         ArrayList<Personnage> persos = new ArrayList<>();
         persos.add(m1);
         persos.add(m2);
         persos.add(g1);
         persos.add(g2);
 
-        // Affichage
         for (Personnage p : persos) {
             System.out.println(p);
         }
+        Guerrier g = new Guerrier("Aragorn", 90, true);
+        Magicien m = new Magicien("Merlin", 70, true);
+
+        Baton b1 = new Baton("Chêne", 3, 2);
+        Baton b2 = new Baton("Sureau", 7, 3);
+        Baton b3 = new Baton("Saule", 4, 5);
+
+        Epee e1 = new Epee("Excalibur", 10, 7);
+        Epee e2 = new Epee("Durandal", 8, 3);
+        Epee e3 = new Epee("Tyrfing", 6, 4);
+
+        // 39. Ajouter au guerrier : 1 bâton + 2 épées
+        g.ajouterArme(b1);
+        g.ajouterArme(e1);
+        g.ajouterArme(e2);
+
+        // et il choisit la première épée
+        g.equiperArme("Excalibur");
+
+        // 40. Ajouter au magicien : 2 bâtons + 1 épée
+        m.ajouterArme(b2);
+        m.ajouterArme(b3);
+        m.ajouterArme(e3);
+
+        // 41. Afficher nombre armes préférées du magicien
+        System.out.println("Armes de prédilection de Merlin : " + m.nbArmesDePredilection());
+
+        // 42. Afficher tous les personnages
+        System.out.println();
+        System.out.println(g);
+        System.out.println(m);
+   
     
     }
     

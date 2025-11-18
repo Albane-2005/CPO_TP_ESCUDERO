@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tp3_heroic_fantasy_escudero;
+package Personnages;
+
+import Armes.*;
 
 /**
  *
@@ -19,6 +21,15 @@ public class Guerrier extends Personnage {
 
     public void setACheval(boolean aCheval) {
         this.aCheval = aCheval;
+    }
+
+    @Override
+    public int nbArmesDePredilection() {
+        int c = 0;
+        for (Arme a : inventaire)
+            if (a instanceof Epee)
+                c++;
+        return c;
     }
 
     @Override
