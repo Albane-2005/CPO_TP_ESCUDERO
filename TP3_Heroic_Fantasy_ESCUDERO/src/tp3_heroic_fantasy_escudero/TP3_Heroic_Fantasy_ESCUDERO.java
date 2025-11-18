@@ -21,7 +21,6 @@ public class TP3_Heroic_Fantasy_ESCUDERO {
         Baton chene = new Baton("Chêne", 4, 5);
         Baton charme = new Baton("Charme", 5, 6);
 
-        // 12. Création du tableau dynamique
         ArrayList<Arme> inventaire = new ArrayList<>();
 
         inventaire.add(excalibur);
@@ -29,7 +28,6 @@ public class TP3_Heroic_Fantasy_ESCUDERO {
         inventaire.add(chene);
         inventaire.add(charme);
 
-        // 13. Affichage des caractéristiques
         System.out.println("Inventaire des armes :");
         for (int i = 0; i < inventaire.size(); i++) {
             System.out.println("→ " + inventaire.get(i));
