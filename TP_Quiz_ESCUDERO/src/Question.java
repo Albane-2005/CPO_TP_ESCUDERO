@@ -15,21 +15,14 @@ public class Question {
     private String proposition4;
     private int indexBonneReponse; 
 
-    public Question(String intitule, String p1, String p2, String p3, String p4, int indexBonneReponse) {
+public Question(String intitule, String p1, String p2, String p3, String p4, int indexBonneReponse) {
         this.intitule = intitule;
         this.proposition1 = p1;
         this.proposition2 = p2;
         this.proposition3 = p3;
         this.proposition4 = p4;
-
-        // On sécurise un peu :
-        if (indexBonneReponse < 1 || indexBonneReponse > 4) {
-            throw new IllegalArgumentException("L'index de la bonne réponse doit être entre 1 et 4.");
-        }
         this.indexBonneReponse = indexBonneReponse;
     }
-
-    // Getters
     public String getIntitule() {
         return intitule;
     }
@@ -52,5 +45,17 @@ public class Question {
 
     public int getIndexBonneReponse() {
         return indexBonneReponse;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "intitule='" + intitule + '\'' +
+                ", p1='" + proposition1 + '\'' +
+                ", p2='" + proposition2 + '\'' +
+                ", p3='" + proposition3 + '\'' +
+                ", p4='" + proposition4 + '\'' +
+                ", bonneReponse=" + indexBonneReponse +
+                '}';
     }
 }
