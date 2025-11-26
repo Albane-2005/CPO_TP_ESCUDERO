@@ -13,10 +13,12 @@ import Armes.*;
 public class Magicien extends Personnage {
 
     private boolean confirme;
+    public static int nbMagiciens = 0;
 
     public Magicien(String nom, int niveauVie, boolean confirme) {
         super(nom, niveauVie);
         this.confirme = confirme;
+        nbMagiciens++;
     }
 
     public void setConfirme(boolean confirme) {
@@ -37,4 +39,15 @@ public class Magicien extends Personnage {
         return super.toString() + ", magicien confirmé : " + confirme;
     }
     
+    @Override
+protected void finalize() {
+    nbMagiciens--;
+    super.finalize();
+}
+
+@Override
+public void attaquer(Personnage cible) {
+    cible.estAttaque(20);
+}
+
 }

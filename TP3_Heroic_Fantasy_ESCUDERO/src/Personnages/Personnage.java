@@ -10,15 +10,18 @@ import Armes.*;
  *
  * @author alban
  */
-public abstract class Personnage {
+public abstract class Personnage implements EtreVivant{
     protected String nom;
     protected int niveauVie;
+    
+    protected static int nbPersonnages = 0;
     protected ArrayList<Arme> inventaire = new ArrayList<>();
     protected Arme armeEnMain = null;
-
+    public abstract void attaquer(Personnage cible);
     public Personnage(String nom, int niveauVie) {
         this.nom = nom;
         this.niveauVie = niveauVie;
+        nbPersonnages++;
     }
 
     public int getNiveauVie() {
@@ -59,4 +62,27 @@ public abstract class Personnage {
         String armeTxt = (armeEnMain == null) ? "aucune" : armeEnMain.toString();
         return "Nom : " + nom + ", vie : " + niveauVie + ", arme en main : " + armeTxt;
     }
+    
+    @Override
+    protected void finalize() {
+    nbPersonnages--;
+    }
+    
+    
+@Override
+public void seFatiguer() {
+    this.niveauVie -= 10;
+}
+
+@Override
+public boolean estVivant() {
+    return this.niveauVie > 0;
+}
+
+@Override
+public void estAttaque(int pts) {
+    this.niveauVie -= pts;
+}
+    
+
 }

@@ -13,10 +13,12 @@ import Armes.*;
 public class Guerrier extends Personnage {
 
     private boolean aCheval;
+    public static int nbGuerriers = 0;
 
     public Guerrier(String nom, int niveauVie, boolean aCheval) {
         super(nom, niveauVie);
         this.aCheval = aCheval;
+        nbGuerriers++;
     }
 
     public void setACheval(boolean aCheval) {
@@ -37,4 +39,15 @@ public class Guerrier extends Personnage {
         return super.toString() + ", à cheval : " + aCheval;
     }
     
+    @Override
+protected void finalize() {
+    nbGuerriers--;
+    super.finalize();
+}
+
+@Override
+public void attaquer(Personnage cible) {
+    cible.estAttaque(30);
+}
+
 }

@@ -50,7 +50,8 @@ public class TP3_Heroic_Fantasy_ESCUDERO {
         for (Personnage p : persos) {
             System.out.println(p);
         }
-        Guerrier g = new Guerrier("Aragorn", 90, true);
+        
+        Guerrier g = new Guerrier("Aragorn", 90, true) {};
         Magicien m = new Magicien("Merlin", 70, true);
 
         Baton b1 = new Baton("Chêne", 3, 2);
@@ -81,8 +82,36 @@ public class TP3_Heroic_Fantasy_ESCUDERO {
         System.out.println();
         System.out.println(g);
         System.out.println(m);
-   
-    
+        
+    Magicien m = new Magicien("Gandalf", 100, false);
+    Guerrier g = new Guerrier("Conan", 120, false);
+
+    System.out.println(m);
+    System.out.println(g);
+
+    // Affichage du nombre de personnages
+    System.out.println("Personnages : " + Personnage.nbPersonnages);
+    System.out.println("Magiciens : " + Magicien.nbMagiciens);
+    System.out.println("Guerriers : " + Guerrier.nbGuerriers);
+
+    // Fatiguer le guerrier
+    g.seFatiguer();
+
+    System.out.println(g);
+    if (g.estVivant()) System.out.println("Le guerrier est vivant");
+
+    // Le magicien est attaqué par le guerrier
+    g.attaquer(m);
+
+    System.out.println(g);
+    System.out.println(m)
     }
+    
+    public interface EtreVivant {
+
+    void seFatiguer();       // retire 10 pv
+    boolean estVivant();     // true si niveauVie > 0
+    void estAttaque(int pts); // retire pts à la vie
+}
     
 }
