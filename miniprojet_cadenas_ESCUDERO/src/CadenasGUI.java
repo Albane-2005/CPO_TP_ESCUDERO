@@ -7,80 +7,96 @@
  *
  * @author alban
  */
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.util.Random;
 
 
-public class CadenasGUI extends JFrame {
-private JTextField txtCombinaison;
-private JButton btnTester, btnNouvellePartie;
-private JTextArea zoneResultats;
-private JeuCadenas jeu;
+public class CadenasGUI {
+    private static final int LONGUEUR_CODE = 4;
+    private static final int MAX_TENTATIVES = 5;
+    private static final int MIN_CHIFFRE = 0;
+    private static final int MAX_CHIFFRE = 9;
+   
+    private int[] codeSecret;
+    private int tentativesRestantes;
+    private boolean estGagne;
 
 
 public CadenasGUI() {
-super("Jeu Cadenas - MasterMind simplifié");
-setSize(400, 400);
-setDefaultCloseOperation(EXIT_ON_CLOSE);
-setLayout(new BorderLayout());
-
-
-jeu = new JeuCadenas();
-
-
-JPanel panneauHaut = new JPanel();
-panneauHaut.add(new JLabel("Votre essai :"));
-txtCombinaison = new JTextField(10);
-panneauHaut.add(txtCombinaison);
-
-
-btnTester = new JButton("Tester");
-panneauHaut.add(btnTester);
-
-
-btnNouvellePartie = new JButton("Nouvelle partie");
-panneauHaut.add(btnNouvellePartie);
-
-
-add(panneauHaut, BorderLayout.NORTH);
-
-
-zoneResultats = new JTextArea();
-zoneResultats.setEditable(false);
-JScrollPane scroll = new JScrollPane(zoneResultats);
-add(scroll, BorderLayout.CENTER);
-
-
-btnTester.addActionListener(new ActionListener() {
-@Override
-public void actionPerformed(ActionEvent e) {
-String essai = txtCombinaison.getText();
-if (!jeu.estValide(essai)) {
-JOptionPane.showMessageDialog(null, "Entrez 4 chiffres !");
-return;
-}
-String resultat = jeu.tester(essai);
-zoneResultats.append("Essai: " + essai + " -> " + resultat + "\n");
-}
-});
-
-
-btnNouvellePartie.addActionListener(new ActionListener() {
-@Override
-public void actionPerformed(ActionEvent e) {
-jeu = new JeuCadenas();
-zoneResultats.setText("");
-JOptionPane.showMessageDialog(null, "Nouvelle partie lancée !");
-}
-});
-
-
-setVisible(true);
+    démarrerJeu();
 }
 
+   public final void démarrerJeu() {
+        codeSecret = générerCodeSecret();
+        tentativesRestantes = MAX_TENTATIVES;
+        estGagne = false;
+    }
+   
+    private int[] générerCodeSecret() {
+        Random rand = new Random();
+        int[] code = new int[LONGUEUR_CODE];
+        for (int i = 0; i < LONGUEUR_CODE; i++) {
+            code[i] = rand.nextInt(MAX_CHIFFRE - MIN_CHIFFRE + 1) + MIN_CHIFFRE;
+        }
+        return code;
+    }
+    
+     public int[] testerCombinaison(int[] essai) throws IllegalArgumentException {
+        // Validation basique
+        if (essai == null || essai.length != LONGUEUR_CODE) {
+            throw new IllegalArgumentException("L'essai doit être un tableau de " + LONGUEUR_CODE + " chiffres.");
+        }
+       
+        if (estPartieTerminee() && !estGagne) {
+            return new int[]{0, 0, 0};
+        }
 
-public static void main(String[] args) {
-new CadenasGUI();
-}
+        int exacts = 0;
+        int tropHauts = 0;
+        int tropBas = 0;
+
+        for (int i = 0; i < LONGUEUR_CODE; i++) {
+            if (essai[i] == codeSecret[i]) {
+                exacts++;
+            } else if (essai[i] > codeSecret[i]) {
+                tropHauts++;
+            } else { // essai[i] < codeSecret[i]
+                tropBas++;
+            }
+        }
+        tentativesRestantes--;
+        if (exacts == LONGUEUR_CODE) {
+            estGagne = true;
+        }
+       
+        return new int[]{exacts, tropHauts, tropBas};
+    }
+   
+    public boolean estPartieTerminee() {
+        return estGagne || tentativesRestantes <= 0;
+    }
+   
+    public int getTentativesEffectuees() {
+        return MAX_TENTATIVES - tentativesRestantes;
+    }
+   
+    public int getMaxTentatives() {
+        return MAX_TENTATIVES;
+    }
+
+    public boolean estGagne() {
+        return estGagne;
+    }
+   
+    public String getCodeSecretString() {
+         return arrayToString(codeSecret);
+    }
+   
+    private String arrayToString(int[] arr) {
+        if (arr == null) return "";
+        StringBuilder sb = new StringBuilder();
+        for (int i : arr) {
+            sb.append(i);
+        }
+        return sb.toString();
+    }
 }
