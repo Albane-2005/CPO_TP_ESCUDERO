@@ -30,21 +30,65 @@ public class EcranAccueil extends javax.swing.JFrame {
         btn_Facile = new javax.swing.JButton();
         btn_Normal = new javax.swing.JButton();
         btn_Difficile = new javax.swing.JButton();
+        Texte_Début = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_Facile.setText("Jouer Facile");
-        getContentPane().add(btn_Facile, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
+        btn_Facile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_FacileActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_Facile, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 100, -1));
 
         btn_Normal.setText("Jouer Normal");
-        getContentPane().add(btn_Normal, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, -1));
+        btn_Normal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_NormalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_Normal, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, -1, -1));
 
         btn_Difficile.setText("Jouer Difficile");
-        getContentPane().add(btn_Difficile, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
+        btn_Difficile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_DifficileActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_Difficile, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
+
+        Texte_Début.setFont(new java.awt.Font("Stencil", 3, 24)); // NOI18N
+        Texte_Début.setForeground(new java.awt.Color(255, 255, 255));
+        Texte_Début.setText("Bienvenue dans le jeu !");
+        getContentPane().add(Texte_Début, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 310, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\alban\\OneDrive\\Images\\Pellicule\\2023\\08\\20230809_175518000_iOS 1.jpg")); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_FacileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_FacileActionPerformed
+        Interface i = new Interface();
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_FacileActionPerformed
+
+    private void btn_NormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NormalActionPerformed
+        Interface i = new Interface();
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_NormalActionPerformed
+
+    private void btn_DifficileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DifficileActionPerformed
+        Interface i = new Interface();
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_DifficileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -72,8 +116,10 @@ public class EcranAccueil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Texte_Début;
     private javax.swing.JButton btn_Difficile;
     private javax.swing.JButton btn_Facile;
     private javax.swing.JButton btn_Normal;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
