@@ -27,13 +27,21 @@ public class EcranAccueil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn_Jouer = new javax.swing.JButton();
+        btn_Facile = new javax.swing.JButton();
+        btn_Normal = new javax.swing.JButton();
+        btn_Difficile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_Jouer.setText("Jouer");
-        getContentPane().add(btn_Jouer, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 129, -1, -1));
+        btn_Facile.setText("Jouer Facile");
+        getContentPane().add(btn_Facile, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
+
+        btn_Normal.setText("Jouer Normal");
+        getContentPane().add(btn_Normal, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, -1));
+
+        btn_Difficile.setText("Jouer Difficile");
+        getContentPane().add(btn_Difficile, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -64,6 +72,8 @@ public class EcranAccueil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Jouer;
+    private javax.swing.JButton btn_Difficile;
+    private javax.swing.JButton btn_Facile;
+    private javax.swing.JButton btn_Normal;
     // End of variables declaration//GEN-END:variables
 }
